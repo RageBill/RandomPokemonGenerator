@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import './PokemonDisplay.css';
 import { Container, Label, Image, Reveal } from 'semantic-ui-react';
@@ -30,6 +31,13 @@ const PokemonDisplay = (props) => {
       </Reveal>
     </Container>
   )
+}
+
+PokemonDisplay.propTypes = {
+  ball: PropTypes.string,
+  loading: PropTypes.bool,
+  showing: PropTypes.bool,
+  pokemon: PropTypes.object,
 }
 
 export default PokemonDisplay;
