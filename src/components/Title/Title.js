@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styles from './Title.css';
 import { Segment, Divider, Header } from 'semantic-ui-react';
 
 const Title = (props) => {
