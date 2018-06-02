@@ -1,10 +1,12 @@
 import React from 'react';
 import './PokemonGenerator.css';
-import { Container } from 'semantic-ui-react';
+import { Container, Popup, Icon, Button } from 'semantic-ui-react';
 import Randomizer from '../Randomizer/Randomizer';
 import PokemonDisplay from '../PokemonDisplay/PokemonDisplay';
 
 const proxy = "https://cors-anywhere.herokuapp.com/";
+
+const instructions = "Choose the starting and ending Pokedex ID then click on 'Randomize' to get a random pokemon. By looking at the name, try to recall the face or even draw out the pokemon!";
 
 // Pokedex start & end IDs for pokemon generations
 const generations = [
@@ -91,6 +93,12 @@ export default class PokemonGuesser extends React.Component {
     const ballImg = "http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c31e.png";
     return (
       <Container className="generatorContainer">
+        <Popup
+          trigger={<Button><Icon name="help"/>How to Play</Button>}
+          content={instructions}
+          size="large"
+          wide="very"
+        />
         <Randomizer
           generations={generations}
           selected={this.state.selected}

@@ -4,7 +4,6 @@ import 'semantic-ui-css/semantic.min.css';
 import Title from './components/Title/Title';
 import PokemonGenerator from './components/PokemonGenerator/PokemonGenerator';
 import {
-  BrowserRouter as Router,
   Route,
   Link,
   Redirect,
@@ -16,7 +15,7 @@ class App extends Component {
     return (
       <div className="App">
         <Title text="Random Pokemon Generator"/>
-        <PokemonGenerator/>
+        <Route path="/RecallMemory" component={PokemonGenerator}/>
       </div>
     );
   }
