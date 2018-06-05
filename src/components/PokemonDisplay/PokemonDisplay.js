@@ -6,7 +6,6 @@ import { Container, Label, Image, Reveal } from 'semantic-ui-react';
 const PokemonDisplay = (props) => {
   const properName = props.pokemon.name ? props.pokemon.name.charAt(0).toUpperCase() + props.pokemon.name.slice(1) : "";
   const labelText = props.loading ? "" : "#" + props.pokemon.id + " " + properName;
-  console.log(props);
   return (
     <Container>
       <Label 

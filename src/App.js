@@ -11,11 +11,25 @@ import {
 } from 'react-router-dom';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      mode: 1,
+    }
+  }
+
+  handleModeChange = (evt, data) => {
+    this.setState({
+      mode: data.value,
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <Title text="Random Pokemon Generator"/>
-        <Route path="/RecallMemory" component={PokemonGenerator}/>
+        <Title mode={this.state.mode} handleModeChange={this.handleModeChange}/>
+        <Route path="/mode/1" component={PokemonGenerator}/>
       </div>
     );
   }
