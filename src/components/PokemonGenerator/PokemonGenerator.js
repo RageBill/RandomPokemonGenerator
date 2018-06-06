@@ -3,10 +3,14 @@ import './PokemonGenerator.css';
 import { Container, Popup, Icon, Button } from 'semantic-ui-react';
 import Randomizer from '../Randomizer/Randomizer';
 import PokemonDisplay from '../PokemonDisplay/PokemonDisplay';
+import ModePrompt from '../ModePrompt/ModePrompt';
 
 const proxy = "https://cors-anywhere.herokuapp.com/";
 
-const instructions = "Choose the starting and ending Pokedex ID then click on 'Randomize' to get a random pokemon. By looking at the name, try to recall the face or even draw out the pokemon!";
+const instructions = [
+  "Choose the starting and ending Pokedex ID then click on 'Randomize' to get a random pokemon. By looking at the name, try to recall the face or even draw out the pokemon!",
+  "Hello"
+];
 
 // Pokedex start & end IDs for pokemon generations
 const generations = [
@@ -20,7 +24,7 @@ const generations = [
   {"start": 722, "end": 807},
 ];
 
-export default class PokemonGuesser extends React.Component {
+export default class PokemonGenerator extends React.Component {
   constructor(props) {
     super(props);
 
@@ -77,7 +81,6 @@ export default class PokemonGuesser extends React.Component {
   }
 
   updatePokemon = (response) => {
-    console.log(response);
     this.setState({
       loading: false,
       showing: true,
@@ -90,31 +93,40 @@ export default class PokemonGuesser extends React.Component {
   }
 
   render() {
+    const params = this.props.match.params;
     const ballImg = "http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c31e.png";
-    return (
-      <Container className="generatorContainer">
-        <Popup
-          trigger={<Button><Icon name="help"/>How to Play</Button>}
-          content={instructions}
-          size="large"
-          wide="very"
-        />
-        <Randomizer
-          generations={generations}
-          selected={this.state.selected}
-          loading={this.state.loading}
-          fields={this.state.fields}
-          handleChange={this.handleChange}
-          handleInput={this.handleInput}
-          handleSubmit={this.handleSubmit}
-        />
-        <PokemonDisplay
-          ball={ballImg}
-          loading={this.state.loading}
-          showing={this.state.showing}
-          pokemon={this.state.pokemon}
-        />
-      </Container>
-    );
+    const mode = parseInt(params.mode, 10);
+    const instruction = instructions[mode - 1];
+    if(mode === 1 || mode === 2){
+      return (
+        <Container className="generatorContainer">
+          <Popup
+            trigger={<Button><Icon name="help"/>How to Play</Button>}
+            content={instruction}
+            size="large"
+            wide="very"
+          />
+          <Randomizer
+            generations={generations}
+            selected={this.state.selected}
+            loading={this.state.loading}
+            fields={this.state.fields}
+            handleChange={this.handleChange}
+            handleInput={this.handleInput}
+            handleSubmit={this.handleSubmit}
+          />
+          <PokemonDisplay
+            ball={ballImg}
+            loading={this.state.loading}
+            showing={this.state.showing}
+            pokemon={this.state.pokemon}
+          />
+        </Container>
+      );
+    } else {
+      return(
+        <ModePrompt/>
+      );
+    } 
   }
 }
