@@ -14,6 +14,7 @@ export default class Randomizer extends React.Component {
     handleSubmit: PropTypes.func,
   }
 
+  // Generate the option choices for each pokemon gen
   generateChoices = (selected) => {
     const choices = this.props.generations.map((gen, i) => {
       const labelText = i === 0 ? "All" : "Gen " + (i);
