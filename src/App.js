@@ -13,17 +13,17 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route path={process.env.PUBLIC_URL + "/redirectpage/:first/:second/:third"} component={RedirectPage}/>
-          <Route path={process.env.PUBLIC_URL + "/scrollcontent/:first/:second/:third"} component={ScrollContent}/>
-          <Route path={process.env.PUBLIC_URL + "/"}>
+          <Route path={process.env.PUBLIC_URL + "/RandomPokemonGenerator/redirectpage/:first/:second/:third"} component={RedirectPage}/>
+          <Route path={process.env.PUBLIC_URL + "/RandomPokemonGenerator/scrollcontent/:first/:second/:third"} component={ScrollContent}/>
+          <Route path={process.env.PUBLIC_URL + "/RandomPokemonGenerator/"}>
             <div>
               <Switch>
-                <Route path={process.env.PUBLIC_URL + "/modes/:mode"} component={Title}/>
-                <Route path={process.env.PUBLIC_URL + "/"} component={Title}/>
+                <Route path={process.env.PUBLIC_URL + "/RandomPokemonGenerator/modes/:mode"} component={Title}/>
+                <Route path={process.env.PUBLIC_URL + "/RandomPokemonGenerator/"} component={Title}/>
               </Switch>
               <Switch>
-                <Route path={process.env.PUBLIC_URL + "/modes/:mode"} component={PokemonGenerator}/>
-                <Route path={process.env.PUBLIC_URL + "/"} component={ModePrompt}/>
+                <Route path={process.env.PUBLIC_URL + "/RandomPokemonGenerator/modes/:mode"} component={PokemonGenerator}/>
+                <Route path={process.env.PUBLIC_URL + "/RandomPokemonGenerator/"} component={ModePrompt}/>
               </Switch>
             </div>
           </Route>
