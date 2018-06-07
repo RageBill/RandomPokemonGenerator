@@ -32,7 +32,7 @@ export default class PokemonFusion extends React.Component {
 
   componentDidMount() {
     this.refs.iframe.onload = () => {
-      this.refs.iframe.contentWindow.scrollTo(410, 610);
+      this.refs.iframe.contentWindow.scrollTo(385, 610);
       setTimeout(this.delayedDisplay, 3000);
     }
   }
@@ -64,7 +64,7 @@ export default class PokemonFusion extends React.Component {
           src={url}
           scrolling="no"
           height="230"
-          width="200"
+          width="250"
           title="fusionDisplay"
           ref="iframe"
           className={!this.state.loaded? "hiddenFrame":""}
