@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 ReactDOM.render(
-  <Router basename="/RandomPokemonGenerator/">
+  <Router>
     <App />
   </Router>, 
   document.getElementById('root'));

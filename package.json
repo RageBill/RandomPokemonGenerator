@@ -2,7 +2,7 @@
   "name": "pokemon",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ragebill.github.io/",
+  "homepage": "https://ragebill.github.io/RandomPokemonGenerator/",
   "dependencies": {
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
