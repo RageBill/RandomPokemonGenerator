@@ -5,6 +5,7 @@ import Title from './components/Title/Title';
 import PokemonGenerator from './components/PokemonGenerator/PokemonGenerator';
 import ModePrompt from './components/ModePrompt/ModePrompt';
 import ScrollContent from './components/ScrollContent/ScrollContent';
+import RedirectPage from './components/RedirectPage/RedirectPage';
 import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
+          <Route path={process.env.PUBLIC_URL + "/redirectpage/:first/:second/:third"} component={RedirectPage}/>
           <Route path={process.env.PUBLIC_URL + "/scrollcontent/:first/:second/:third"} component={ScrollContent}/>
           <Route path={process.env.PUBLIC_URL + "/"}>
             <div>
