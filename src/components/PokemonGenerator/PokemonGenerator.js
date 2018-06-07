@@ -35,7 +35,7 @@ export default class PokemonGenerator extends React.Component {
       pokemons: [{}],
       fields: {
         start: generations[0].start,
-        end: generations[0].end,
+        end: parseInt(props.match.params.mode, 10) == 2? generations[4].end : generations[0].end,
       },
       selected: 0,
       mode: parseInt(props.match.params.mode, 10),
@@ -157,7 +157,7 @@ export default class PokemonGenerator extends React.Component {
   // Game Mode 2 -> PokemonFusion
   renderResult = (mode) => {
     if(mode === 1){
-      const ballImg = "https://www.stickpng.com/assets/images/580b57fcd9996e24bc43c31e.png";
+      const ballImg = "http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c31e.png";
       return(
         <PokemonDisplay
           ball={ballImg}

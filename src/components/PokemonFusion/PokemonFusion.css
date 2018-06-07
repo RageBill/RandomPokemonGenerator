@@ -7,5 +7,11 @@
 }
 
 .pokemonImages {
-  width: 100px !important;
+  height: 165px !important;
+  width: 120px !important;
+}
+
+.pokemonImages img {
+  width: 120px !important;
+  height: 120px !important;
 }

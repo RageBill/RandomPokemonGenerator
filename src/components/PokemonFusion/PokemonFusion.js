@@ -45,7 +45,7 @@ export default class PokemonFusion extends React.Component {
 
   render() {
     const pokemons = this.state.pokemons;
-    const url = pokemons.length === 2 ? `https://ragebill.github.io/RandomPokemonGenerator/scrollcontent/${pokemons[0].id}/${pokemons[1].id}/0` : "";
+    const url = pokemons.length === 2 ? `/scrollcontent/${pokemons[0].id}/${pokemons[1].id}/0` : "";
     return (
       <Container>
         <Loader 

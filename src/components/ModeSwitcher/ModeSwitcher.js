@@ -7,7 +7,7 @@ const ModeSwitcher = (props) => {
   return (
     <Button.Group>
       <Link
-        to={"/RandomPokemonGenerator/modes/1"}
+        to={"/modes/1"}
       >
         <Button value={1} onClick={props.handleModeChange} positive={props.mode === 1}>
           Original Pokemons
@@ -15,7 +15,7 @@ const ModeSwitcher = (props) => {
       </Link>
       <Button.Or />
       <Link
-        to={"/RandomPokemonGenerator/modes/2"}
+        to={"/modes/2"}
       >
       <Button value={2} onClick={props.handleModeChange} positive={props.mode === 2}>
         Fusion Pokemons
