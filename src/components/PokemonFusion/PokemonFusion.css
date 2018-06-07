@@ -1,3 +1,11 @@
 .hiddenFrame {
   visibility: hidden;
 }
+
+.originPokemons {
+  padding-top: 50px;
+}
+
+.pokemonImages {
+  width: 100px !important;
+}

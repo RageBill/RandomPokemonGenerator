@@ -51,7 +51,7 @@ export default class PokemonGenerator extends React.Component {
         pokemons: [{}],
         fields: {
           start: generations[0].start,
-          end: generations[0].end,
+          end: nextMode === 2? generations[4].end : generations[0].end,
         },
         selected: 0,
         mode: nextMode,
@@ -74,7 +74,7 @@ export default class PokemonGenerator extends React.Component {
       selected: value,
       fields: {
         start: generations[value].start,
-        end: generations[value].end,
+        end: this.state.mode === 2 && value === 0? generations[4].end : generations[value].end,
       },
     });
   }
@@ -102,8 +102,6 @@ export default class PokemonGenerator extends React.Component {
       pokemons[1] = newPokemon;
     }
 
-    console.log(pokemons);
-
     this.setState({
       pokemons: pokemons,
     });
@@ -114,7 +112,6 @@ export default class PokemonGenerator extends React.Component {
 
     if(mode === 2 && pokemons.length === 2){
       this.displayPokemon();
-      console.log("calling updates")
     }
   }
 
@@ -133,7 +130,7 @@ export default class PokemonGenerator extends React.Component {
     this.setState({
       loading: true,
       showing: false,
-      pokemon: [{}],
+      pokemons: [{}],
     });
 
     let prevNum = 0;
@@ -196,7 +193,7 @@ export default class PokemonGenerator extends React.Component {
             wide="very"
           />
           <Randomizer
-            generations={generations}
+            generations={this.state.mode === 1? generations : generations.slice(0, 5)}
             selected={this.state.selected}
             loading={this.state.loading}
             fields={this.state.fields}

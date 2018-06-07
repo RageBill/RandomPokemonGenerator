@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import './PokemonFusion.css';
-import { Container, Loader } from 'semantic-ui-react';
+import { Container, Loader, Card } from 'semantic-ui-react';
 
 export default class PokemonFusion extends React.Component {
   static propTypes = {
@@ -50,7 +50,7 @@ export default class PokemonFusion extends React.Component {
       <Container>
         <Loader 
           indeterminate
-          inline center
+          inline
           active={this.state.showing && !this.state.loaded}
         >
         Preparing Pokemon...
@@ -65,6 +65,22 @@ export default class PokemonFusion extends React.Component {
           ref="iframe"
           className={!this.state.loaded? "hiddenFrame":""}
         />
+        <Card.Group 
+          itemsPerRow={2} 
+          className="originPokemons"
+          centered
+        >
+          <Card
+            image={pokemons.length === 2 ? pokemons[0].image : ""}
+            header={pokemons.length === 2 ? pokemons[0].name: ""}
+            className={!this.state.loaded? "hiddenFrame pokemonImages":"pokemonImages"}
+          />
+          <Card
+            image={pokemons.length === 2 ? pokemons[1].image : ""}
+            header={pokemons.length === 2 ? pokemons[1].name: ""}
+            className={!this.state.loaded? "hiddenFrame pokemonImages":"pokemonImages"}
+          />
+        </Card.Group>
       </Container>
     );
   }
