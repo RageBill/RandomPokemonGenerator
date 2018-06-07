@@ -157,7 +157,7 @@ export default class PokemonGenerator extends React.Component {
   // Game Mode 2 -> PokemonFusion
   renderResult = (mode) => {
     if(mode === 1){
-      const ballImg = "http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c31e.png";
+      const ballImg = "https://www.stickpng.com/assets/images/580b57fcd9996e24bc43c31e.png";
       return(
         <PokemonDisplay
           ball={ballImg}
