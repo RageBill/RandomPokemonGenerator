@@ -33,14 +33,18 @@ export default class PokemonFusion extends React.Component {
   componentDidMount() {
     this.refs.iframe.onload = () => {
       this.refs.iframe.contentWindow.scrollTo(410, 610);
-      this.setState({
-        loaded: true, 
-      });
+      setTimeout(this.delayedDisplay, 3000);
     }
   }
 
   componentWillUnmount() {
     this.refs.iframe.onload = null;
+  }
+
+  delayedDisplay = () => {
+    this.setState({
+      loaded: true, 
+    });
   }
 
   render() {
