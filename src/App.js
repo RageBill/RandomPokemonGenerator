@@ -12,16 +12,16 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route path="/scrollcontent/:first/:second/:third" component={ScrollContent}/>
-          <Route path="/">
+          <Route path={process.env.PUBLIC_URL + "/scrollcontent/:first/:second/:third"} component={ScrollContent}/>
+          <Route path={process.env.PUBLIC_URL + "/"}>
             <div>
               <Switch>
-                <Route path="/modes/:mode" component={Title}/>
-                <Route path="/" component={Title}/>
+                <Route path={process.env.PUBLIC_URL + "/modes/:mode"} component={Title}/>
+                <Route path={process.env.PUBLIC_URL + "/"} component={Title}/>
               </Switch>
               <Switch>
-                <Route path="/modes/:mode" component={PokemonGenerator}/>
-                <Route path="/" component={ModePrompt}/>
+                <Route path={process.env.PUBLIC_URL + "/modes/:mode"} component={PokemonGenerator}/>
+                <Route path={process.env.PUBLIC_URL + "/"} component={ModePrompt}/>
               </Switch>
             </div>
           </Route>
