@@ -35,7 +35,7 @@ export default class PokemonGenerator extends React.Component {
       pokemons: [{}],
       fields: {
         start: generations[0].start,
-        end: parseInt(props.match.params.mode, 10) == 2? generations[4].end : generations[0].end,
+        end: parseInt(props.match.params.mode, 10) === 2? generations[4].end : generations[0].end,
       },
       selected: 0,
       mode: parseInt(props.match.params.mode, 10),
