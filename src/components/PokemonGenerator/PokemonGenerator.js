@@ -10,7 +10,7 @@ const proxy = "https://cors-anywhere.herokuapp.com/";
 
 const instructions = [
   "Choose the starting and ending Pokedex ID then click on 'Randomize' to get a random pokemon. By looking at the name, try to recall the face or even draw out the pokemon!",
-  "Hello"
+  "Choose the starting and ending Pokedex ID then click on 'Randomize' to get a fusion pokemon from 2 random pokemons! Try to draw the fusioned pokemon and let your friends guess which 2 pokemons were the original!"
 ];
 
 // Pokedex start & end IDs for pokemon generations
@@ -32,7 +32,7 @@ export default class PokemonGenerator extends React.Component {
     this.state = {
       loading: false,
       showing: false,
-      pokemon: {},
+      pokemons: [{}],
       fields: {
         start: generations[0].start,
         end: generations[0].end,
@@ -48,7 +48,7 @@ export default class PokemonGenerator extends React.Component {
       return({
         loading: false,
         showing: false,
-        pokemon: {},
+        pokemons: [{}],
         fields: {
           start: generations[0].start,
           end: generations[0].end,
@@ -57,7 +57,7 @@ export default class PokemonGenerator extends React.Component {
         mode: nextMode,
       });
     } else {
-      return ;
+      return null;
     }
   }
 
@@ -84,41 +84,74 @@ export default class PokemonGenerator extends React.Component {
     return response.json();
   }
 
-  // Update pokemon display after fetch
+
+  // Updating the pokemons in state
   updatePokemon = (response) => {
+    const mode = this.state.mode;
+    
+    const newPokemon = {
+      image: response.sprites.front_default,
+      id: response.id,
+      name: response.name,
+    };
+
+    const pokemons = this.state.pokemons.slice();
+    if(JSON.stringify(pokemons[0]) === JSON.stringify({})){
+      pokemons[0] = newPokemon;
+    } else {
+      pokemons[1] = newPokemon;
+    }
+
+    console.log(pokemons);
+
+    this.setState({
+      pokemons: pokemons,
+    });
+
+    if(mode === 1){
+      this.displayPokemon();
+    }
+
+    if(mode === 2 && pokemons.length === 2){
+      this.displayPokemon();
+      console.log("calling updates")
+    }
+  }
+
+  // Display pokemon after updating
+  displayPokemon = () => {
     this.setState({
       loading: false,
-      showing: true,
-      pokemon: {
-        image: response.sprites.front_default,
-        id: response.id,
-        name: response.name,
-      }, 
+      showing: true, 
     });
   }
 
   // Fetch random pokemon from PokeAPI
   handleSubmit = (evt) => {
-    const mode = parseInt(this.props.match.params.mode, 10);
+    const mode = this.state.mode;
     evt.preventDefault();
     this.setState({
       loading: true,
       showing: false,
+      pokemon: [{}],
     });
-    if(mode === 1){
+
+    let prevNum = 0;
+    // Fetch 1 pokemon for mode 1, fetch 2 for mode 2
+    for(let i = 0; i < mode; i++){
       let url = "https://pokeapi.co/api/v2/pokemon/";
-      url += Math.round(Math.random() * (this.state.fields.end - this.state.fields.start)) + this.state.fields.start;
+      let newId = 0;
+      do {
+        newId = Math.round(Math.random() * (this.state.fields.end - this.state.fields.start)) + this.state.fields.start;
+      } while(newId === prevNum);
+      url += newId;
+      prevNum = newId;
       fetch( proxy + url, {
         headers: {
           Accept: "application/json", 
         },
       }).then(this.parseJSON)
         .then(this.updatePokemon);
-      return ;
-    }
-    
-    if(mode === 2){
-      return ;
     }
   }
 
@@ -133,7 +166,7 @@ export default class PokemonGenerator extends React.Component {
           ball={ballImg}
           loading={this.state.loading}
           showing={this.state.showing}
-          pokemon={this.state.pokemon}
+          pokemon={this.state.pokemons[0]}
         />
       );
     }
@@ -141,9 +174,8 @@ export default class PokemonGenerator extends React.Component {
     if(mode === 2){
       return(
         <PokemonFusion
-          loading={this.state.loading}
           showing={this.state.showing}
-          pokemon={this.state.pokemon}
+          pokemons={this.state.pokemons}
         />
       );
     }

@@ -11,21 +11,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route path="/">
-          <div>
-            <Switch>
-              <Route exact path="/" component={Title}/>
-              <Route exact path="/modes" component={Title}/>
-              <Route path="/modes/:mode" component={Title}/>
-            </Switch>
-            <Switch>
-              <Route path="/modes/:mode" component={PokemonGenerator}/>
-              <Route exact path="/" component={ModePrompt}/>
-              <Route exact path="/modes" component={ModePrompt}/>
-            </Switch>
-          </div>
-        </Route>
-        <Route path="/scrollcontent" component={ScrollContent}/>
+        <Switch>
+          <Route path="/scrollcontent/:first/:second/:third" component={ScrollContent}/>
+          <Route path="/">
+            <div>
+              <Switch>
+                <Route path="/modes/:mode" component={Title}/>
+                <Route path="/" component={Title}/>
+              </Switch>
+              <Switch>
+                <Route path="/modes/:mode" component={PokemonGenerator}/>
+                <Route path="/" component={ModePrompt}/>
+              </Switch>
+            </div>
+          </Route>
+        </Switch>
       </div>
     );
   }
