@@ -13,17 +13,17 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route path="/RandomPokemonGenerator/redirectpage/:first/:second/:third" component={RedirectPage}/>
-          <Route path="/RandomPokemonGenerator/scrollcontent/:first/:second/:third" component={ScrollContent}/>
-          <Route path="/RandomPokemonGenerator/">
+          <Route path="/redirectpage/:first/:second/:third" component={RedirectPage}/>
+          <Route path="/scrollcontent/:first/:second/:third" component={ScrollContent}/>
+          <Route path="/">
             <div>
               <Switch>
-                <Route path="/RandomPokemonGenerator/modes/:mode" component={Title}/>
-                <Route path="/RandomPokemonGenerator/" component={Title}/>
+                <Route path="/modes/:mode" component={Title}/>
+                <Route path="/" component={Title}/>
               </Switch>
               <Switch>
-                <Route path="/RandomPokemonGenerator/modes/:mode" component={PokemonGenerator}/>
-                <Route path="/RandomPokemonGenerator/" component={ModePrompt}/>
+                <Route path="/modes/:mode" component={PokemonGenerator}/>
+                <Route path="/" component={ModePrompt}/>
               </Switch>
             </div>
           </Route>
