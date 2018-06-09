@@ -1,6 +1,6 @@
 import React from 'react';
 import './ModePrompt.css';
-import { Image, Icon, Message } from 'semantic-ui-react';
+import { Image, Loader, Message } from 'semantic-ui-react';
 
 const trumps = [
   "https://pbs.twimg.com/profile_images/874276197357596672/kUuht00m_400x400.jpg",
@@ -17,6 +17,8 @@ const trumps = [
   "https://cdn.newsapi.com.au/image/v1/2ad71c9f9cc75b428a6f857e5721adfd",
 ];
 
+let interval = null;
+
 export default class ModePrompt extends React.Component {
   constructor(props) {
     super(props);
@@ -28,6 +30,13 @@ export default class ModePrompt extends React.Component {
   }
 
   getRandomQuote = () => {
+    if(this.state.loading && this.state.quote !== ""){
+      return ;
+    }
+
+    this.setState({
+      loading: true,
+    });
     const url = "https://api.whatdoestrumpthink.com/api/v1/quotes/random";
     fetch(url, {
       headers: {
@@ -50,6 +59,11 @@ export default class ModePrompt extends React.Component {
 
   componentDidMount() {
     this.getRandomQuote();
+    interval = setInterval(this.getRandomQuote, 10000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(interval);
   }
 
   render(){
@@ -59,7 +73,7 @@ export default class ModePrompt extends React.Component {
         <Message.Header><h2>Please choose a valid game mode from above!</h2></Message.Header>
         <br/>
         {this.state.loading ?
-          <Icon name='circle notched' loading/>
+          <Loader active inline size="medium">Waiting for Trump...</Loader>
           :
           <div>
             <Image 
@@ -67,6 +81,7 @@ export default class ModePrompt extends React.Component {
               circular
               size="small"
               className="centered"
+              onClick={this.getRandomQuote}
             />
             <p className="quote"><i>"{this.state.quote}"</i></p>
           </div>
