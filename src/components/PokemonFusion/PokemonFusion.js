@@ -7,6 +7,7 @@ export default class PokemonFusion extends React.Component {
   static propTypes = {
     showing: PropTypes.bool,
     pokemons: PropTypes.array,
+    pokemonIds: PropTypes.array,
   }
 
   constructor(props){
@@ -15,6 +16,8 @@ export default class PokemonFusion extends React.Component {
     this.state = {
       showing: props.showing,
       pokemons: props.pokemons,
+      pokemonIds: props.pokemonIds,
+      iframeLoaded: false,
       loaded: false,
     }
   }
@@ -22,11 +25,15 @@ export default class PokemonFusion extends React.Component {
   static getDerivedStateFromProps(nextProps, state){
     const showing = nextProps.showing;
     const pokemons = nextProps.pokemons;
-    const loaded = pokemons === state.pokemons && showing && state.loaded;
+    const pokemonIds = nextProps.pokemonIds;
+    const iframeLoaded = pokemonIds === state.pokemonIds && state.iframeLoaded;
+    const loaded = pokemons === state.pokemons && pokemons.length === 2 && iframeLoaded;
     return { 
       showing: showing,
       pokemons: pokemons,
       loaded: loaded,
+      pokemonIds: pokemonIds,
+      iframeLoaded: iframeLoaded,
     }
   }
 
@@ -43,13 +50,14 @@ export default class PokemonFusion extends React.Component {
 
   delayedDisplay = () => {
     this.setState({
-      loaded: true, 
+      iframeLoaded: true, 
     });
   }
 
   render() {
+    const pokemonIds = this.state.pokemonIds;
     const pokemons = this.state.pokemons;
-    const url = pokemons.length === 2 ? `/scrollcontent/${pokemons[0].id}/${pokemons[1].id}/0` : "";
+    const url = pokemonIds.length === 2 ? `/scrollcontent/${pokemonIds[0]}/${pokemonIds[1]}/0` : "";
     return (
       <Container>
         <Loader 

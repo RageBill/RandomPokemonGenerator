@@ -33,6 +33,7 @@ export default class PokemonGenerator extends React.Component {
       loading: false,
       showing: false,
       pokemons: [{}],
+      pokemonIds: [],
       fields: {
         start: generations[0].start,
         end: parseInt(props.match.params.mode, 10) === 2? generations[4].end : generations[0].end,
@@ -142,6 +143,12 @@ export default class PokemonGenerator extends React.Component {
         newId = Math.round(Math.random() * (this.state.fields.end - this.state.fields.start)) + this.state.fields.start;
       } while(newId === prevNum);
       url += newId;
+      if(i === 1){
+        const pokemonIds = [prevNum, newId];
+        this.setState({
+          pokemonIds: pokemonIds, 
+        });
+      }
       prevNum = newId;
       fetch( proxy + url, {
         headers: {
@@ -172,6 +179,7 @@ export default class PokemonGenerator extends React.Component {
       return(
         <PokemonFusion
           showing={this.state.showing}
+          pokemonIds={this.state.pokemonIds}
           pokemons={this.state.pokemons}
         />
       );
