@@ -25,9 +25,9 @@ export default class Title extends Component {
 
   render(){
     return (
-      <Segment padded="very" inverted size="massive">
+      <Segment inverted size="massive">
         <Divider horizontal inverted>
-          <Header size="huge" inverted>{titleText}</Header>
+          <Header size="large" inverted>{titleText}</Header>
           <br/>
           <ModeSwitcher mode={this.state.mode} handleModeChange={this.handleModeChange}/>
         </Divider>

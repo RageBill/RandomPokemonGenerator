@@ -187,7 +187,7 @@ export default class PokemonGenerator extends React.Component {
       return (
         <Container className="generatorContainer">
           <Popup
-            trigger={<Button><Icon name="help"/>How to Play</Button>}
+            trigger={<Button className="howToBtn"><Icon name="help"/>How to Play</Button>}
             content={instruction}
             size="large"
             wide="very"
