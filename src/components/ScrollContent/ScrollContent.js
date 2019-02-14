@@ -28,7 +28,7 @@ export default class ScrollContent extends React.Component {
     return (
       <iframe 
         src=""
-        height="2000"
+        height="685"
         width="1000"
         title="scrollContent"
         scrolling="no"
