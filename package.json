@@ -2,7 +2,7 @@
   "name": "pokemon",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://morning-escarpment-18111.herokuapp.com/",
+  "homepage": "https://randompokemongenerator.herokuapp.com/",
   "dependencies": {
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
